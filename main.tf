@@ -6,7 +6,7 @@ terraform {
     backend "s3" {
         bucket = "remote-backend-s3-dhruv"
         key = "terraform.tfstate"
-        region = var.region
+        region = "us-east-1"
         encrypt = true
     }
 }
