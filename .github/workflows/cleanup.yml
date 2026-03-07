@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  destroy:
+  provision:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,4 +32,4 @@ jobs:
         run: terraform apply --auto-approve
 
      # - name: Terraform Destroy
-     #   run: terraform destroy -var-file="dev.tfvars" --auto-approve
+     #   run: terraform destroy --auto-approve

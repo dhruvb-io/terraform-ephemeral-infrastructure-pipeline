@@ -11,7 +11,7 @@ terraform {
     }
 }
 
-resource "aws_instance" "mul_env_instance" {
+resource "aws_instance" "cleanup" {
     ami = var.ami
     instance_type = var.instance_type
     tags = {
