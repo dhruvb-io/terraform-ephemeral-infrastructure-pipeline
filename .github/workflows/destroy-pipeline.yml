@@ -2,8 +2,8 @@ name: Terraform Clean Up
 
 on:
   schedule:
-    # 13:45 UTC = 19:15 IST
-    - cron: "45 13 * * *"
+    # 14:00 UTC = 19:30 IST
+    - cron: "00 14 * * *"
   # Keep manual trigger for testing
   workflow_dispatch: 
 
