@@ -2,7 +2,10 @@ name: Terraform Clean Up
 
 on:
   schedule:
-    - cron: "30 13 * * *"
+    # 13:45 UTC = 19:15 IST
+    - cron: "45 13 * * *"
+  # Keep manual trigger for testing
+  workflow_dispatch: 
 
 jobs:
   destroy:
@@ -10,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -22,5 +25,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      - name: Terraform Init
+        run: terraform init
+
       - name: Terraform Destroy
-        run: terraform destroy --auto-approve -input=false
+        run: terraform destroy -auto-approve -input=false
