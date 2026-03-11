@@ -1,12 +1,11 @@
-name: Terraform Deploy
+name: Terraform Clean Up
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 17 * * *"
 
 jobs:
-  create:
+  destroy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +22,5 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve -input=false
+      - name: Terraform Destroy
+        run: terraform destroy --auto-approve -input=false
